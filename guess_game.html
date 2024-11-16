@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вгадай число</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Вгадай число</h1>
+    <p>Я загадав число від 1 до 100. Спробуй вгадати!</p>
+    <input type="number" id="guess" placeholder="Введіть число">
+    <button onclick="checkGuess()">Відгадати</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        // JavaScript для логіки гри
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess').value);
+            const result = document.getElementById('result');
+            attempts++;
+
+            if (isNaN(guess)) {
+                result.textContent = "Будь ласка, введіть число!";
+            } else if (guess < randomNumber) {
+                result.textContent = "Загадане число більше. Спробуйте ще!";
+            } else if (guess > randomNumber) {
+                result.textContent = "Загадане число менше. Спробуйте ще!";
+            } else {
+                result.textContent = `Вітаємо! Ви вгадали число ${randomNumber} за ${attempts} спроб!`;
+            }
+        }
+    </script>
+</body>
+</html>
